@@ -2,20 +2,290 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+
+    --card: 0 0% 98%;
+    --card-foreground: 0 0% 3.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+
+    --primary: 142 68% 55%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 142 68% 55%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 142 68% 55%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 142 68% 55%;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+      "Open Sans", "Helvetica Neue", sans-serif;
+    font-size: 16px;
+  }
+
+  /* Classe para substituir a fonte Arimo */
+  .font-brand {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-weight: bold;
+  }
+
+  /* Barra de rolagem personalizada */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-background;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary/80;
+  }
+
+  /* Ajustes para responsividade */
+  @media (max-width: 640px) {
+    body {
+      font-size: 14px;
+    }
+
+    h1 {
+      font-size: 1.5rem !important;
+    }
+
+    h2 {
+      font-size: 1.25rem !important;
+    }
+
+    h3 {
+      font-size: 1.125rem !important;
+    }
+  }
+
+  /* Tabelas responsivas */
+  .responsive-table {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Ajustes para tabelas em dispositivos móveis */
+  @media (max-width: 640px) {
+    .responsive-table table {
+      min-width: 100%;
+    }
+
+    .responsive-table th,
+    .responsive-table td {
+      padding: 0.5rem;
+      font-size: 0.875rem;
+    }
+  }
 }
+
+/* Animações */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Gradientes e efeitos */
+.hero-gradient {
+  background: linear-gradient(135deg, rgba(116, 221, 60, 0.2) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.button-gradient {
+  background: linear-gradient(135deg, #74dd3c 0%, #4caf50 100%);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #74dd3c 0%, #4caf50 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Fonte personalizada */
+@font-face {
+  font-family: "HabitHunter";
+  src: url("/fonts/habit-hunter.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font-habit {
+  font-family: "HabitHunter", sans-serif;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Estilos específicos para a página de estratégias */
+.strategy-section {
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.strategy-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.strategy-content {
+  padding: 1rem;
+  border-top: 1px solid #333;
+}
+
+/* Estilos para os modais */
+.modal-dark {
+  background-color: #2a2a2a;
+  border-color: #333;
+}
+
+.input-dark {
+  background-color: #3a3a3a;
+  border-color: #555;
+  color: white;
+}
+
+/* Cores para os botões de jogo */
+.color-red {
+  background-color: #ff4136;
+}
+
+.color-black {
+  background-color: #111111;
+}
+
+.color-white {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Botão primário verde */
+.btn-green {
+  background-color: #74dd3c;
+  color: white;
+}
+
+.btn-green:hover {
+  background-color: #65c235;
+}
+
+/* Estilos para tabelas responsivas */
+@media (max-width: 768px) {
+  .table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .table-responsive thead {
+    display: none;
+  }
+
+  .table-responsive tbody tr {
+    display: block;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+  }
+
+  .table-responsive tbody td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    text-align: right;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .table-responsive tbody td:last-child {
+    border-bottom: none;
+  }
+
+  .table-responsive tbody td::before {
+    content: attr(data-label);
+    font-weight: 500;
+    text-align: left;
+    margin-right: 1rem;
+  }
+}
+
